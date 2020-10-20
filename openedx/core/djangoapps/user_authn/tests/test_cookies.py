@@ -130,7 +130,7 @@ class CookieTests(TestCase):
     def test_refresh_jwt_cookies(self):
         setup_login_oauth_client()
         self._set_use_jwt_cookie_header(self.request)
-        response = cookies_api.refresh_jwt_cookies(self.request, HttpResponse(), self.user)
+        response = cookies_api.refresh_jwt_cookies(self.request, True, self.user)
         self._assert_cookies_present(response, cookies_api.JWT_COOKIE_NAMES)
         self._assert_consistent_expires(response, num_of_unique_expires=1)
         self._assert_recreate_jwt_from_cookies(response, can_recreate=True)

@@ -12,6 +12,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.dispatch import Signal
 from django.urls import NoReverseMatch, reverse
+from django.utils import timezone
 from django.utils.http import http_date
 from edx_rest_framework_extensions.auth.jwt import cookies as jwt_cookies
 from edx_rest_framework_extensions.auth.jwt.constants import JWT_DELIMITER
@@ -22,6 +23,8 @@ from openedx.core.djangoapps.oauth_dispatch.api import create_dot_access_token
 from openedx.core.djangoapps.oauth_dispatch.jwt import create_jwt_from_token
 from openedx.core.djangoapps.user_api.accounts.utils import retrieve_last_sitewide_block_completed
 from openedx.core.djangoapps.user_authn.exceptions import AuthFailedError
+from util.json_request import JsonResponse
+
 from student.models import CourseEnrollment
 
 log = logging.getLogger(__name__)
@@ -154,13 +157,20 @@ def set_logged_in_cookies(request, response, user):
     return response
 
 
-def refresh_jwt_cookies(request, response, user):
+def refresh_jwt_cookies(request, refresh_status, user):
     """
     Resets the JWT related cookies in the response for the given user.
     """
     cookie_settings = standard_cookie_settings(request)
+    response = JsonResponse({})
     _create_and_set_jwt_cookies(response, request, cookie_settings, user=user)
-
+    response.content = json.dumps(
+        {
+            'success': refresh_status,
+            'response_time': timezone.now().strftime('%Y-%m-%d %H:%M:%S.%f %Z'),
+            'expires': cookie_settings.get('expires', 'None'),
+        }
+    )
     return response
 
 

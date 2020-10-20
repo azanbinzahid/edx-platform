@@ -4,7 +4,6 @@ Views for login / logout and associated functionality
 Much of this file was broken out from views.py, previous history can be found there.
 """
 
-
 import json
 import logging
 
@@ -485,8 +484,7 @@ def login_refresh(request):
         return JsonResponse('Unauthorized', status=401)
 
     try:
-        response = JsonResponse({'success': True})
-        return refresh_jwt_cookies(request, response, request.user)
+        return refresh_jwt_cookies(request=request, refresh_status=True, user=request.user)
     except AuthFailedError as error:
         log.exception(error.get_response())
         return JsonResponse(error.get_response(), status=400)
