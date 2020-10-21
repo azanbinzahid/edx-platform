@@ -8,7 +8,7 @@ from django.db import migrations, models
 from model_utils import fields
 from opaque_keys.edx.django.models import CourseKeyField
 
-import badges.models
+import lms.djangoapps.badges.models
 
 
 class Migration(migrations.Migration):

@@ -12,7 +12,7 @@ from milestones.tests.utils import MilestonesTestCaseMixin
 from mock import patch
 from pytz import UTC
 
-from badges.tests.factories import CourseCompleteImageConfigurationFactory
+from lms.djangoapps.badges.tests.factories import CourseCompleteImageConfigurationFactory
 from lms.djangoapps.certificates.models import (
     CertificateStatuses,
     GeneratedCertificate,
