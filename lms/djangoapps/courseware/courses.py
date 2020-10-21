@@ -23,7 +23,7 @@ from six import text_type
 
 from openedx.core.lib.cache_utils import request_cached
 
-import branding
+import lms.djangoapps.branding
 from lms.djangoapps.courseware.access import has_access
 from lms.djangoapps.courseware.access_response import (
     AuthenticationRequiredAccessError,
