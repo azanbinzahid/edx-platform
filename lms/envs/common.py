@@ -3912,6 +3912,13 @@ COURSE_ENROLLMENT_MODES = {
         "display_name": _("Master's"),
         "min_price": 0,
     },
+    "executive-education": {
+        "id": 8,
+        "slug": "executive-educations",
+        "display_name": _("Executive Education"),
+        "min_price": 0
+        # TODO: verify this doesn't need to be 1
+    }
 }
 
 CONTENT_TYPE_GATE_GROUP_IDS = {
