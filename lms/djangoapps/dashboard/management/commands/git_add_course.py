@@ -8,8 +8,8 @@ import logging
 from django.core.management.base import BaseCommand, CommandError
 from django.utils.translation import ugettext as _
 
-import dashboard.git_import
-from dashboard.git_import import GitImportError
+import lms.djangoapps.dashboard.git_import
+from lms.djangoapps.dashboard.git_import import GitImportError
 from xmodule.modulestore.django import modulestore
 from xmodule.modulestore.xml import XMLModuleStore
 
