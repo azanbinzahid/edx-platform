@@ -1532,7 +1532,7 @@ SIMPLE_WIKI_REQUIRE_LOGIN_EDIT = True
 SIMPLE_WIKI_REQUIRE_LOGIN_VIEW = False
 
 ################################# WIKI ###################################
-from course_wiki import settings as course_wiki_settings
+from lms.djangoapps.course_wiki import settings as course_wiki_settings
 
 WIKI_ACCOUNT_HANDLING = False
 WIKI_EDITOR = 'course_wiki.editors.CodeMirror'
